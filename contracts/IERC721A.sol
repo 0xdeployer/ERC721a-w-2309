@@ -113,6 +113,11 @@ interface IERC721A {
     event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
 
     /**
+     * @dev Emitted on mint when a batch of tokens are created
+     */
+    event ConsecutiveTransfer(uint256 indexed fromTokenId, uint256 toTokenId, address indexed fromAddress, address indexed toAddress);
+
+    /**
      * @dev Emitted when `owner` enables `approved` to manage the `tokenId` token.
      */
     event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);

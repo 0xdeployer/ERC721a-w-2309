@@ -29,7 +29,7 @@
     "ethers": "^5.5.3",
     "hardhat": "^2.8.2",
     "hardhat-gas-reporter": "^1.0.7",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.2",
     "prettier-plugin-solidity": "^1.0.0-beta.19",
     "solidity-coverage": "^0.7.20"
   },
@@ -42,5 +42,8 @@
   "bugs": {
     "url": "https://github.com/chiru-labs/ERC721A/issues"
   },
-  "homepage": "https://github.com/chiru-labs/ERC721A#readme"
+  "homepage": "https://github.com/chiru-labs/ERC721A#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.6.0"
+  }
 }

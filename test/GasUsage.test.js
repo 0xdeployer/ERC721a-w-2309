@@ -2,70 +2,101 @@ const { deployContract } = require('./helpers.js');
 
 describe('ERC721A Gas Usage', function () {
   beforeEach(async function () {
+    this.erc721 = await deployContract('ERC721GasReporterMock');
     this.erc721a = await deployContract('ERC721AGasReporterMock', ['Azuki', 'AZUKI']);
+    this.erc721ab = await deployContract('ERC721ABGasReporterMock', ['NoRugs', 'NORUGS']);
     const [owner, addr1] = await ethers.getSigners();
     this.owner = owner;
     this.addr1 = addr1;
   });
 
   context('mintOne', function () {
-    it('runs mintOne 2 times', async function () {
+    it('ERC721 - runs mintOne 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721.mintOne(this.addr1.address);
+      }
+    });
+    it('ERC721A - runs mintOne 2 times', async function () {
       for (let i = 0; i < 2; i++) {
         await this.erc721a.mintOne(this.addr1.address);
       }
     });
+    it('ERC721AB - runs mintOne 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721ab.mintOne(this.addr1.address);
+      }
+    });
   });
 
-  context('safeMintOne', function () {
-    it('runs safeMintOne 2 times', async function () {
+  context('mintFive', function () {
+    it('ERC721 - runs mintFive 2 times', async function () {
       for (let i = 0; i < 2; i++) {
-        await this.erc721a.safeMintOne(this.addr1.address);
+        await this.erc721.mintFive(this.addr1.address);
+      }
+    });
+    it('ERC721A - runs mintFive 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721a.mintFive(this.addr1.address);
+      }
+    });
+    it('ERC721AB - runs mintFive 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721ab.mintFive(this.addr1.address);
       }
     });
   });
 
   context('mintTen', function () {
-    it('runs mintTen 2 times', async function () {
+    it('ERC721 - runs mintTen 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721.mintTen(this.addr1.address);
+      }
+    });
+    it('ERC721A - runs mintTen 2 times', async function () {
       for (let i = 0; i < 2; i++) {
         await this.erc721a.mintTen(this.addr1.address);
       }
     });
-  });
-
-  context('safeMintTen', function () {
-    it('runs safeMintTen 2 times', async function () {
+    it('ERC721AB - runs mintTen 2 times', async function () {
       for (let i = 0; i < 2; i++) {
-        await this.erc721a.safeMintTen(this.addr1.address);
+        await this.erc721ab.mintTen(this.addr1.address);
       }
     });
   });
 
-  context('transferFrom', function () {
-    beforeEach(async function () {
-      await this.erc721a.mintTen(this.owner.address);
-      await this.erc721a.mintOne(this.owner.address);
-
-      await this.erc721a.mintTen(this.addr1.address);
-      await this.erc721a.mintOne(this.addr1.address);
-    });
-
-    it('transfer to and from two addresses', async function () {
-      for (let i = 0; i < 2; ++i) {
-        await this.erc721a.connect(this.owner).transferFrom(this.owner.address, this.addr1.address, 1);
-        await this.erc721a.connect(this.addr1).transferFrom(this.addr1.address, this.owner.address, 1);
+  context('mintTwenty', function () {
+    it('ERC721 - runs mintTwenty 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721.mintTwenty(this.addr1.address);
       }
     });
-
-    it('transferTen ascending order', async function () {
-      await this.erc721a.connect(this.owner).transferTenAsc(this.addr1.address);
+    it('ERC721A - runs mintTwenty 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721a.mintTwenty(this.addr1.address);
+      }
     });
-
-    it('transferTen descending order', async function () {
-      await this.erc721a.connect(this.owner).transferTenDesc(this.addr1.address);
+    it('ERC721AB - runs mintTwenty 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721ab.mintTwenty(this.addr1.address);
+      }
     });
+  });
 
-    it('transferTen average order', async function () {
-      await this.erc721a.connect(this.owner).transferTenAvg(this.addr1.address);
+  context('mintOneHundred', function () {
+    it('ERC721 - runs mintOneHundred 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721.mintOneHundred(this.addr1.address);
+      }
+    });
+    it('ERC721A - runs mintOneHundred 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721a.mintOneHundred(this.addr1.address);
+      }
+    });
+    it('ERC721AB - runs mintOneHundred 2 times', async function () {
+      for (let i = 0; i < 2; i++) {
+        await this.erc721ab.mintOneHundred(this.addr1.address);
+      }
     });
   });
 });

@@ -21,8 +21,20 @@ contract ERC721AGasReporterMock is ERC721A {
         _safeMint(to, 10);
     }
 
+    function mintFive(address to) public {
+        _mint(to, 5);
+    }
+
     function mintTen(address to) public {
         _mint(to, 10);
+    }
+
+    function mintTwenty(address to) public {
+        _mint(to, 20);
+    }
+
+    function mintOneHundred(address to) public {
+        _mint(to, 100);
     }
 
     function transferTenAsc(address to) public {
