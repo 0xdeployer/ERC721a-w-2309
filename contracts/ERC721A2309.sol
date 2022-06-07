@@ -529,7 +529,7 @@ contract ERC721A2309 is IERC721A {
 
             uint256 end = startTokenId + quantity;
 
-            emit ConsecutiveTransfer(startTokenId, startTokenId + quantity, address(0), to);
+            emit ConsecutiveTransfer(startTokenId, startTokenId + quantity - 1, address(0), to);
 
             _currentIndex = end;
         }
